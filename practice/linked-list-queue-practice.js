@@ -111,6 +111,9 @@ class SinglyLinkedList {
 
         // Write your hypothesis on the time complexity of this method here
         // O(n)
+        // finding list length is O(n)
+        // finding the Nth is O(n)
+        // O(2n) => O(n)
     }
 
     reverse() {
@@ -190,20 +193,67 @@ class DoublyLinkedList {
         // Returns the middle node
         // Implement this as a singly linked list then as a doubly linked list
             // How do the implementation for singly and doubly vary if at all?
+        // The doubly linked implementation moves inwards from both sides
+
+    let front = this.head;
+    let back = this.tail;
+
+    while (front !== back && front.next !== back) {
+        front = front.next;
+        back = back.prev;
+    }
+
+    return front;
 
         // Write your hypothesis on the time complexity of this method here
+        // O(n)
     }
 
     reverse() {
         // Returns a new reversed version of the linked list
 
+        let reversed = new DoublyLinkedList();
+        let current = this.tail;
+        reversed.head = current;
+
+        while (current) {
+
+            let oldPrev = current.prev;
+            let oldNext = current.next;
+
+            current.next = oldPrev;
+            current.prev = oldNext;
+
+            current = current.next;
+        }
+
+        reversed.tail = current;
+
+        //console.log("reversed", reversed);
+        return reversed;
+
         // Write your hypothesis on the time complexity of this method here
+        // O(n)
     }
 
     reverseInPlace() {
         // Reverses the linked list in-place
+        let current = this.tail;
+        this.head = current;
+        while (current) {
+
+            let oldPrev = current.prev;
+            let oldNext = current.next;
+
+            current.next = oldPrev;
+            current.prev = oldNext;
+
+            current = current.next;
+        }
+        this.tail = current;
 
         // Write your hypothesis on the time complexity of this method here
+        // O(n)
     }
 }
 
